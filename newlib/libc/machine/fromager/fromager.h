@@ -92,11 +92,7 @@ void __cc_trace_exec(
         uintptr_t arg0,
         uintptr_t arg1,
         uintptr_t arg2,
-        uintptr_t arg3,
-        uintptr_t arg4,
-        uintptr_t arg5,
-        uintptr_t arg6,
-        uintptr_t arg7);
+        uintptr_t arg3);
 
 extern const size_t READ_COUNTS;
 extern const unsigned char** read_bufs;
