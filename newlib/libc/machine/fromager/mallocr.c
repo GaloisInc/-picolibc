@@ -36,6 +36,10 @@ void __cc_write_and_poison(uintptr_t* ptr, uintptr_t val);
 
 #ifndef FROMAGER_SIMPLE_MALLOC
 
+#ifdef DISABLE_MALLOC_POISON
+#error "DISABLE_MALLOC_POISON set without FROMAGER_SIMPLE_MALLOC, but this allocator has not been tested with DISABLE_MALLOC_POISON yet. Set FROMAGER_SIMPLE_MALLOC if you need DISABLE_MALLOC_POISON."
+#endif
+
 #ifdef DEFINE_MALLOC
 // Allocate a block of `size` bytes.
 char* malloc_internal(size_t size) {
@@ -204,7 +208,7 @@ void free(void* ptr) {
     size_t size = (size_t)__cc_read_unchecked((uintptr_t*)(ptr - sizeof(uintptr_t)));
     __cc_access_invalid(ptr, ptr + size);
     // TODO: detect invalid free + double free
-    // TODO: poison freed memeory
+    // TODO: if DISABLE_MALLOC_POISON is not set, poison freed memory
 }
 #endif
 
@@ -273,6 +277,7 @@ int posix_memalign(void **memptr, size_t alignment, size_t size) __attribute__((
     char* padding_start = (char*)pos;
     pos += MALLOC_PADDING;
 
+#ifndef DISABLE_MALLOC_POISON
     uintptr_t poison_offset = __cc_advise_poison_offset(padding_start, MALLOC_PADDING);
     if (poison_offset < MALLOC_PADDING) {
         uintptr_t* poison = (uintptr_t*)(padding_start + poison_offset);
@@ -282,6 +287,7 @@ int posix_memalign(void **memptr, size_t alignment, size_t size) __attribute__((
         // The pointer is guaranteed to be somewhere within the padding region.
         __cc_write_and_poison(poison, 0);
     }
+#endif
 
     return 0;
 }

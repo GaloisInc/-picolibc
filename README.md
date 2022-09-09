@@ -19,6 +19,18 @@ necessary to `rm -r build` and restart from scratch, as otherwise Meson can
 wrongly retain settings from the old configuration.  (Fortunately, picolibc
 builds very quickly.)
 
+## Disabling Malloc Poisoning
+
+By default, `malloc()` may poison memory that it can prove
+is permanently out of bounds. To disable this, build with
+`-Ddisable-malloc-poison=true`:
+
+```sh
+mkdir build
+cd build
+../scripts/do-fromager-configure -Ddisable-malloc-poison=true
+ninja install
+```
 
 # Picolibc
 Copyright © 2018-2021 Keith Packard
