@@ -59,9 +59,13 @@ void __llvm__memset__p0i8__i64(uint8_t *dest, uint8_t val, uint64_t len) {
 }
 
 
-int32_t __bswapsi2(int32_t a);
 uint32_t __llvm__bswap__i32(uint32_t x) {
-    return __bswapsi2(x);
+    volatile uint32_t x0 = x;
+    uint8_t a = x0 >> 0;
+    uint8_t b = x >> 8;
+    uint8_t c = x >> 16;
+    uint8_t d = x >> 24;
+    return d | (c << 8) | (b << 16) | (a << 24);
 }
 
 int __popcountsi2(unsigned int a);
