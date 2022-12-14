@@ -1,6 +1,6 @@
 [binaries]
-c = ['clang-11', '--target=riscv64-unknown-unknown', '-march=rv64im', '-fPIC', '-flto', '-mprefer-vector-width=1']
-cpp = ['clang++-11', '--target=riscv64-unknown-unknown', '-march=rv64im', '-fPIC', '-flto', '-mprefer-vector-width=1', '-fno-rtti']
+c = ['clang-11', '--target=riscv64-unknown-elf', '-march=rv64im', '-fPIC', '-flto', '-mprefer-vector-width=1']
+cpp = ['clang++-11', '--target=riscv64-unknown-elf', '-march=rv64im', '-fPIC', '-flto', '-mprefer-vector-width=1', '-fno-rtti']
 #c_ld = ['llvm-link-11']
 #cpp_ld = ['llvm-link-11']
 as = ['false']
