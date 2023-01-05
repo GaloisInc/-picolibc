@@ -1,7 +1,7 @@
 #!/bin/sh
 # Copyright © 2021 Galois, Inc.  All rights reserved.
 
-exec `dirname $0`/do-configure x86_64-unknown-fromager \
+exec `dirname $0`/do-configure riscv64-unknown-fromager \
     -Dmultilib=false \
     -Dpicocrt=false \
     -Dio-c99-formats=false \

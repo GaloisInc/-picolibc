@@ -35,7 +35,7 @@ srcs_machine_syscalls = [
 ]
 
 srcs_machine_syscalls_native = [
-  'native/syscalls.c',
+  #'native/syscalls.c',
 ]
 
 srcs_machine_syscalls_common = [
@@ -43,7 +43,7 @@ srcs_machine_syscalls_common = [
 ]
 
 srcs_machine_native = [
-  'cc_native.c',
+  #'cc_native.c',
 ]
 
 foreach target : targets

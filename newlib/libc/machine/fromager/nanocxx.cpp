@@ -1,8 +1,8 @@
 #include <stdlib.h>
-#include <new>
+//#include <new>
 #include "fromager.h"
 
-void* operator new(std::size_t sz) throw(std::bad_alloc) {
+void* operator new(size_t sz) {
     return malloc(sz);
 }
 
