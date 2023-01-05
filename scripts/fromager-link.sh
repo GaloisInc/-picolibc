@@ -66,7 +66,7 @@ fi
 
 case "$(uname)" in
     Linux)
-        compiler_rt_lib="$COMPILER_RT_HOME/lib/linux/libclang_rt.builtins-x86_64.a"
+        compiler_rt_lib="$COMPILER_RT_HOME/lib/linux/libclang_rt.builtins-riscv64.a"
         ;;
     *)
         echo "don't know how to find compiler-rt library for $(uname) platform"
@@ -191,9 +191,8 @@ do_build() {
         $strip_debug_args \
         $instrument_args \
         $flatten_init_args \
-        --force-vector-width=1 \
-        --scalarizer --unroll-vectors --soft-float \
-        -O3 --scalarizer --unroll-vectors -O1 \
+        --scalarizer --soft-float \
+        -O3 --scalarizer -O1 \
         -o "$work_dir/driver-nosecret-opt.bc"
 
     # Link the driver code and the secrets.  No more optimizations should be run on
