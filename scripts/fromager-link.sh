@@ -176,12 +176,15 @@ do_build() {
     keep_symbols=$keep_symbols,__cc_srem_i64_i64
     keep_symbols=$keep_symbols,__cc_va_start
     keep_symbols=$keep_symbols,__llvm__va_copy
+    # Explicitly preserve `memcpy` and some related symbols.  `globaldce` can't
+    # see the connection between `llvm.memcpy...` and `memcpy` and will wrongly
+    # remove the latter.
+    keep_symbols=$keep_symbols,memcpy,memmove,memset,memcmp
     if [[ "$mode" == "native" ]]; then
         # Explicitly preserve some libm symbols.  `globaldce` can't see the connection
         # between `llvm.floor.f64` and `floor` and will wrongly remove the latter.
         keep_symbols=$keep_symbols,ceil,floor,trunc,llrint
         keep_symbols=$keep_symbols,exp,exp2,log,pow
-        keep_symbols=$keep_symbols,memcpy,memmove,memset
     fi
 
     # Optimize, removing unused public symbols
