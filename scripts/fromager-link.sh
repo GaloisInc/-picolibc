@@ -192,6 +192,7 @@ do_build() {
         "$work_dir/driver-nosecret.bc" \
         --internalize --internalize-public-api-list="$keep_symbols" \
         $strip_debug_args \
+        --soft-float-early \
         $instrument_args \
         $flatten_init_args \
         --scalarizer --soft-float \
