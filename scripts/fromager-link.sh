@@ -195,7 +195,7 @@ do_build() {
         --soft-float-early \
         $instrument_args \
         $flatten_init_args \
-        --scalarizer --soft-float \
+        --scalarizer --soft-float --cc-int-intrinsics \
         -O3 --scalarizer -O1 \
         -o "$work_dir/driver-nosecret-opt.bc"
 
