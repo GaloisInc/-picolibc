@@ -2,6 +2,7 @@
 # Copyright © 2021 Galois, Inc.  All rights reserved.
 
 exec `dirname $0`/do-configure riscv64-unknown-fromager \
+    --buildtype release \
     -Dmultilib=false \
     -Dpicocrt=false \
     -Dio-c99-formats=false \
