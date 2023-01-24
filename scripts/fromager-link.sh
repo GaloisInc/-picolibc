@@ -124,7 +124,7 @@ do_build() {
             $(unpack_objects "$PICOLIBC_HOME/lib/libmachine_builtins.a") \
             -o "$work_dir/builtins-orig.bc"
 
-        opt${LLVM_SUFFIX} \
+        opt${LLVM_SUFFIX} ${LLVM_OPT_FLAGS} \
             -load "$LLVM_PASSES_HOME/passes.so" \
             "$work_dir/builtins-orig.bc" \
             --cc-set-intrinsic-attrs \
@@ -188,7 +188,8 @@ do_build() {
     fi
 
     # Optimize, removing unused public symbols
-    opt${LLVM_SUFFIX} -load "$LLVM_PASSES_HOME/passes.so" \
+    opt${LLVM_SUFFIX} ${LLVM_OPT_FLAGS} \
+        -load "$LLVM_PASSES_HOME/passes.so" \
         "$work_dir/driver-nosecret.bc" \
         --internalize --internalize-public-api-list="$keep_symbols" \
         $strip_debug_args \
@@ -207,7 +208,7 @@ do_build() {
         $(unpack_objects $extra_post_link) \
         -o "$work_dir/driver-full.bc"
 
-    opt${LLVM_SUFFIX} \
+    opt${LLVM_SUFFIX} ${LLVM_OPT_FLAGS} \
         "$work_dir/driver-full.bc" \
         $strip_debug_args --globaldce \
         -o "$work_dir/driver-full-nodebug.bc"
