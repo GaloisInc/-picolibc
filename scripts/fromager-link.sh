@@ -56,11 +56,11 @@ PICOLIBC_HOME="$(dirname "$0")/.."
 CHEESECLOTH_HOME="$PICOLIBC_HOME/../../../../.."
 if [ -z "$COMPILER_RT_HOME" ]; then
     # Guess compiler-rt location
-    COMPILER_RT_HOME="$CHEESECLOTH_HOME/llvm-project/compiler-rt/build"
+    COMPILER_RT_HOME="$CHEESECLOTH_HOME/llvm-project/compiler-rt/build${LLVM_SUFFIX}"
     echo "guessed $(readlink -f "$COMPILER_RT_HOME")"
 fi
 if [ -z "$LLVM_PASSES_HOME" ]; then
-    LLVM_PASSES_HOME="$CHEESECLOTH_HOME/llvm-passes"
+    LLVM_PASSES_HOME="$CHEESECLOTH_HOME/llvm-passes/build${LLVM_SUFFIX}"
     echo "guessed $(readlink -f "$LLVM_PASSES_HOME")"
 fi
 

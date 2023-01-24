@@ -7,5 +7,5 @@ output="$PWD/$2"
 
 mkdir -p "$dir"
 (cd "$dir" && ar x "$input")
-llvm-link-11 "$dir"/* -o "$output"
+llvm-link${LLVM_SUFFIX} "$dir"/* -o "$output"
 rm -rf "$dir"

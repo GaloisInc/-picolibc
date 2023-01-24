@@ -1,8 +1,8 @@
 [binaries]
-c = ['clang-9', '-flto', '-mprefer-vector-width=1']
-cpp = ['clang++-9', '-flto', '-mprefer-vector-width=1', '-fno-rtti']
-#c_ld = ['llvm-link-9']
-#cpp_ld = ['llvm-link-9']
+c = ['clang${LLVM_SUFFIX}', '-flto', '-mprefer-vector-width=1']
+cpp = ['clang++${LLVM_SUFFIX}', '-flto', '-mprefer-vector-width=1', '-fno-rtti']
+#c_ld = ['llvm-link${LLVM_SUFFIX}']
+#cpp_ld = ['llvm-link${LLVM_SUFFIX}']
 as = ['false']
 
 [host_machine]
