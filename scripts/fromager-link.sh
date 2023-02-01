@@ -159,7 +159,7 @@ do_build() {
         $(unpack_objects $compiler_rt_lib) \
         -o "$work_dir/driver-nosecret.bc"
 
-    keep_symbols=main
+    keep_symbols=$keep_symbols,main
     keep_symbols=$keep_symbols,__llvm__memcpy__p0i8__p0i8__i64
     keep_symbols=$keep_symbols,__llvm__memmove__p0i8__p0i8__i64
     keep_symbols=$keep_symbols,__llvm__memset__p0i8__i64
