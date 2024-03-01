@@ -219,7 +219,7 @@ void *realloc(void *ptr, size_t size) {
     }
 
     TRACE("realloc %x to %d\n", (uintptr_t)ptr, size);
-    size_t old_size = *(size_t*)(ptr - sizeof(size_t));
+    size_t old_size = (size_t)__cc_read_unchecked((uintptr_t*)(ptr - sizeof(uintptr_t)));
     size_t copy_size = old_size < size ? old_size : size;
     TRACE("  got old size %d, copy %d", old_size, copy_size);
     void* new_ptr = malloc(size);
