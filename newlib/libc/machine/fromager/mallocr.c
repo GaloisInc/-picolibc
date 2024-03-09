@@ -181,7 +181,10 @@ int posix_memalign(void **memptr, size_t alignment, size_t size) {
 # define TRACE(...) ((void)0)
 #endif
 
-#define POS_INIT 0x100000000ul
+// This is a constant provided by the compiler, which contains the start
+// address of the heap for the current domain.
+extern const uintptr_t __cc_heap_start;
+#define POS_INIT __cc_heap_start
 
 #ifdef DEFINE_MALLOC
 void* malloc(size_t size) {
